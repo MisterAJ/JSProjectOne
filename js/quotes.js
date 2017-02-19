@@ -36,7 +36,7 @@ var quoteArray = [
         year: '2011'}
 ];
 //  Array that we add and remove from
-var qArray = quoteArray;
+var qArray = quoteArray.slice();
 
 //  Output message to HTML
 function print(message){
@@ -50,30 +50,31 @@ function random(num) {
 }
 
 //  Format inputted message
-function formatMessage(quoteObject) {
-    var message = '<p class="quote">' + quoteObject.quote + '</p>';
-    message += '<p class="source">' + quoteObject.source;
-    message += '<span class="citation">' + quoteObject.citation + '</span>';
-    message += '<span class="year">' + quoteObject.year + '</span></p>';
-    return(message);
+function formatMessage(quoteInput) {
+    var quoteObject = quoteInput;
+    var quote = '<p class="quote">' + quoteObject.quote + '</p>';
+    quote += '<p class="source">' + quoteObject.source;
+    quote += '<span class="citation">' + quoteObject.citation + '</span>';
+    quote += '<span class="year">' + quoteObject.year + '</span></p>';
+    return(quote);
 }
 
 function getRandomQuote(){
-    // Check number of quotes and randomize or refill array
     var i;
     var quote;
-    if (qArray <= 0){
-    qArray = quoteArray;
-    }
-    if(qArray.length > 1) {
+    // Check number of quotes and randomize or refill array
+    if (qArray[0] == null){
+        qArray= quoteArray.slice();
+    } if(qArray.size > 1) {
         i = random(qArray.length);
-    } if (qArray.length == 1){
+    } if (qArray.size === 1){
         i = 1;
     }
     // Removes and returns quote from Array
     quote = qArray.splice(i,1);
 
-    return quote
+    console.log(quote);
+    return quote.pop()
 }
 
 function printQuote(){
