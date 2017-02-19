@@ -4,7 +4,7 @@ document.getElementById('loadQuote').addEventListener("click", printQuote, false
 
 
 // Array of Quotes
-var quoteArray = [
+var quotes = [
     {   quote: 'When you expect nothing from the world - not the light of the sun, the wet of water, nor the air to breathe - everything is a wonder and every moment a gift.',
         source: 'Michael J. Sullivan',
         citation: 'Percepliquis',
@@ -36,7 +36,7 @@ var quoteArray = [
         year: '2011'}
 ];
 //  Array that we add and remove from
-var qArray = quoteArray.slice();
+var qArray = quotes.slice();
 
 //  Output message to HTML
 function print(message){
@@ -64,7 +64,7 @@ function getRandomQuote(){
     var quote;
     // Check number of quotes and randomize or refill array
     if (qArray[0] == null){
-        qArray= quoteArray.slice();
+        qArray= quotes.slice();
     } if(qArray.size > 1) {
         i = random(qArray.length);
     } if (qArray.size === 1){
