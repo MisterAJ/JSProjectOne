@@ -2,6 +2,8 @@
 // when user clicks anywhere on the button, the "printQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
+
+// Array of Quotes
 var quoteArray = [
     {   quote: 'When you expect nothing from the world - not the light of the sun, the wet of water, nor the air to breathe - everything is a wonder and every moment a gift.',
         source: 'Michael J. Sullivan',
@@ -33,7 +35,50 @@ var quoteArray = [
         citation: 'The White Tree',
         year: '2011'}
 ];
+//  Array that we add and remove from
+var qArray = quoteArray;
+
+//  Output message to HTML
+function print(message){
+    var outputDiv = document.getElementById('quote-box');
+    outputDiv.innerHTML = message;
+}
+
+//  Generate a random number up the the param given
+function random(num) {
+    return Math.floor(Math.random() * num.length) +1;
+}
+
+//  Format inputted message
+function formatMessage(quoteObject) {
+    var message = '<p class="quote">' + quoteObject.quote + '</p>';
+    message += '<p class="source">' + quoteObject.source;
+    message += '<span class="citation">' + quoteObject.citation + '</span>';
+    message += '<span class="year">' + quoteObject.year + '</span></p>';
+    return(message);
+}
+
+function getRandomQuote(){
+    // Check number of quotes and randomize or refill array
+    var i;
+    var quote;
+    if (qArray <= 0){
+    qArray = quoteArray;
+    }
+    if(qArray.length > 1) {
+        i = random(qArray.length);
+    } if (qArray.length == 1){
+        i = 1;
+    }
+    // Removes and returns quote from Array
+    quote = qArray.splice(i,1);
+
+    return quote
+}
 
 function printQuote(){
-
+    //Print Chosen Message
+    print(formatMessage(getRandomQuote()))
 }
+
+
