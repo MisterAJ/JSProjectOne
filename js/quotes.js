@@ -46,7 +46,7 @@ function print(message){
 
 //  Generate a random number up the the param given
 function random(num) {
-    return Math.floor(Math.random() * num.length) +1;
+    return Math.floor(Math.random() * num);
 }
 
 //  Format inputted message
@@ -60,15 +60,13 @@ function formatMessage(quoteInput) {
 }
 
 function getRandomQuote(){
-    var i;
+    var i ;
     var quote;
     // Check number of quotes and randomize or refill array
-    if (qArray[0] == null){
+    if (qArray.length == 0){
         qArray= quotes.slice();
-    } if(qArray.size > 1) {
+    } else {
         i = random(qArray.length);
-    } if (qArray.size === 1){
-        i = 1;
     }
     // Removes and returns quote from Array
     quote = qArray.splice(i,1);
